@@ -15,3 +15,21 @@ export const STATUS_MAP: Record<number, string> = {
   2: "completed",
   3: "archived",
 };
+
+// Transport: "stdio" (default) or "http" (Streamable HTTP, stateless)
+export const MCP_TRANSPORT = (process.env.MCP_TRANSPORT || "stdio").toLowerCase();
+export const MCP_HTTP_HOST = process.env.MCP_HTTP_HOST || "0.0.0.0";
+export const MCP_HTTP_PORT = parseInt(process.env.MCP_HTTP_PORT || "3000", 10);
+export const MCP_HTTP_PATH = process.env.MCP_HTTP_PATH || "/mcp";
+// Bearer token MCP clients must send in HTTP mode (separate from the tududi API token)
+export const MCP_AUTH_TOKEN = process.env.MCP_AUTH_TOKEN;
+
+// Optional comma-separated allowlist of tool names, e.g. "add_to_inbox,list_inbox".
+// Unset = all tools.
+export const ENABLED_TOOLS: Set<string> | undefined = process.env.TUDUDI_TOOLS
+  ? new Set(
+      process.env.TUDUDI_TOOLS.split(",")
+        .map((t) => t.trim())
+        .filter(Boolean)
+    )
+  : undefined;

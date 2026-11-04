@@ -63,7 +63,7 @@ The image defaults to `MCP_TRANSPORT=http` on port 3000. You can also build stra
 ```yaml
 services:
   tududi-mcp:
-    build: https://github.com/<you>/tududi-mcp.git#http-transport
+    build: https://github.com/rafaelmathieu/tududi-mcp-http.git#master
 ```
 
 `deploy/` holds a full compose file and a Caddy reverse-proxy example.
